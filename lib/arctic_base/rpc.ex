@@ -13,4 +13,7 @@ defmodule ArcticBase.Rpc do
   def new(args) do
     struct(__MODULE__, args)
   end
+
+  defmacro __using__() do
+  end
 end

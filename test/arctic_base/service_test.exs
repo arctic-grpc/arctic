@@ -9,12 +9,12 @@ defmodule ArcticBase.ServiceTest do
   end
 
   describe "rpc macro" do
-    test "add rpc struct by calling rpc macro" do
+    test "adds rpc struct by calling rpc macro" do
       defmodule FirstTry do
         use ArcticBase.Service, name: "foo.Bar"
 
         rpc(
-          "Get",
+          :Get,
           MyNoneExistingReq,
           MyNoneExistingRes,
           alias: :get,
@@ -28,12 +28,38 @@ defmodule ArcticBase.ServiceTest do
                  %ArcticBase.Rpc{
                    alias: :get,
                    description: "not sure",
-                   name: "Get",
+                   name: :Get,
                    request: MyNoneExistingReq,
                    response: MyNoneExistingRes
                  }
                ]
              }
+    end
+
+    test "compute alias automatically if name is in snake_case" do
+      defmodule SecondTry do
+        use ArcticBase.Service, name: "foo.Bar"
+
+        rpc(
+          :get,
+          MyNoneExistingReq,
+          MyNoneExistingRes,
+          description: "not sure"
+        )
+      end
+    end
+
+    test "returns error when name is not snake_case and alias is missing" do
+      defmodule SecondTry do
+        use ArcticBase.Service, name: "foo.Bar"
+
+        rpc(
+          :get,
+          MyNoneExistingReq,
+          MyNoneExistingRes,
+          description: "not sure"
+        )
+      end
     end
   end
 end
