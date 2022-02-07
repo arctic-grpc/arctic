@@ -1,7 +1,14 @@
 defmodule ArcticBase.UnaryRequest do
   defstruct [:path, :headers, :body]
 
+  @type t :: %__MODULE__{
+          path: String.t(),
+          headers: keyword,
+          body: :binary
+        }
+
   def create(service_name, rpc, message) do
+    # TODO: handle any error?
     {:ok, body, _} = ArcticBase.Message.to_data(message, [])
 
     headers = [
@@ -11,9 +18,8 @@ defmodule ArcticBase.UnaryRequest do
     ]
 
     %__MODULE__{
-      path: path = "/#{service_name}/#{rpc.name}",
+      path: "/#{service_name}/#{rpc.name}",
       headers: headers,
-      # TODO: handle any error?
       body: body
     }
   end
