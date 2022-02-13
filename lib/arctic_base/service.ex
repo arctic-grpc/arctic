@@ -9,14 +9,9 @@ defmodule ArcticBase.Service do
           rpc_calls: list(ArcticBase.Rpc.t())
         }
 
-  @doc false
-  def new(args) do
-    struct(__MODULE__, args)
-  end
-
   defmacro __using__(opts) do
     quote do
-      import ArcticBase.Service, only: [rpc: 4]
+      import ArcticBase.Service, only: [rpc: 4, stream: 1]
 
       Module.register_attribute(__MODULE__, :rpc_calls, accumulate: true)
       @before_compile ArcticBase.Service
@@ -41,6 +36,13 @@ defmodule ArcticBase.Service do
         }
       end
     end
+  end
+
+  @doc """
+  Wrap Grpc messages in stream tuple
+  """
+  def stream(msg) do
+    {:stream, msg}
   end
 
   defmacro rpc(name, request, response, options) do
