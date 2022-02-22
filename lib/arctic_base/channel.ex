@@ -1,12 +1,14 @@
 defmodule ArcticBase.Channel do
-  defstruct [:host, :port, :adapter, :codec, :stub_module]
+  defstruct [:schema, :host, :port, :adapter, :codec, :stub_module, :tls_options]
 
   @type t :: %__MODULE__{
+          schema: :http | :https,
           host: String.t(),
           port: non_neg_integer,
           adapter: ArcticBase.StubAdapter.t(),
           stub_module: module,
-          codec: module
+          codec: module,
+          tls_options: :ssl.tls_option()
         }
 
   @doc false

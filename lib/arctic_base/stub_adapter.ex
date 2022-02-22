@@ -9,7 +9,10 @@ defmodule ArcticBase.StubAdapter do
   @type message :: struct
 
   @callback connect(ArcticBase.Channel.t()) :: :ok
-  @callback request(ArcticBase.Channel.t(), ArcticBase.UnaryRequest.t()) :: :ok
+  @callback request(
+              ArcticBase.Channel.t(),
+              ArcticBase.UnaryRequest.t() | ArcticBase.StreamRequest.t()
+            ) :: :ok
 
   @doc false
   def new(args) do
