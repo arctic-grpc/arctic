@@ -1,4 +1,4 @@
-# ArcticBase
+# Arctic.Base
 
 **TODO: Add description**
 

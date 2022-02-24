@@ -1,4 +1,4 @@
-defmodule ArcticBase.RpcError do
+defmodule Arctic.Base.RpcError do
   defstruct [:message, :status]
 
   @type t :: %__MODULE__{

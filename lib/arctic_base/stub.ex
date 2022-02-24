@@ -1,4 +1,4 @@
-defmodule ArcticBase.Stub do
+defmodule Arctic.Base.Stub do
   defmacro __using__(opts) do
     quote bind_quoted: [opts: opts] do
       service_mod = opts[:service]
@@ -11,16 +11,16 @@ defmodule ArcticBase.Stub do
 
         case response_struct do
           {:stream, response_struct_c} ->
-            @spec unquote(func_name)(ArcticBase.Channel.t(), unquote(request_struct).t(), list) ::
-                    {:ok, ArcticBase.Stream.t()} | {:error, ArcticBase.RpcError.t()}
-            # {:ok, unquote(response_struct_c).t()} | {:error, ArcticBase.RpcError.t()}
+            @spec unquote(func_name)(Arctic.Base.Channel.t(), unquote(request_struct).t(), list) ::
+                    {:ok, Arctic.Base.Stream.t()} | {:error, Arctic.Base.RpcError.t()}
+            # {:ok, unquote(response_struct_c).t()} | {:error, Arctic.Base.RpcError.t()}
 
             @doc """
             The stream are sent as passive mode to the caller process
 
             Look for typespec for
-             * `ArcticBase.Stream.response_msg(#{response_struct_c}.t())`
-             * `ArcticBase.Stream.final_msg`
+             * `Arctic.Base.Stream.response_msg(#{response_struct_c}.t())`
+             * `Arctic.Base.Stream.final_msg`
             """
             def unquote(func_name)(channel, %unquote(request_struct){} = request, opts \\ []) do
               channel.stub_module.stream_request(
@@ -33,8 +33,8 @@ defmodule ArcticBase.Stub do
             end
 
           response_struct_c ->
-            @spec unquote(func_name)(ArcticBase.Channel.t(), unquote(request_struct).t(), list) ::
-                    {:ok, unquote(response_struct_c).t()} | {:error, ArcticBase.RpcError.t()}
+            @spec unquote(func_name)(Arctic.Base.Channel.t(), unquote(request_struct).t(), list) ::
+                    {:ok, unquote(response_struct_c).t()} | {:error, Arctic.Base.RpcError.t()}
             def unquote(func_name)(channel, %unquote(request_struct){} = request, opts \\ []) do
               channel.stub_module.unary_request(
                 channel,

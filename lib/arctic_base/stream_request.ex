@@ -1,4 +1,4 @@
-defmodule ArcticBase.StreamRequest do
+defmodule Arctic.Base.StreamRequest do
   defstruct [:path, :headers, :body, :ref, :stream_reader_pid]
 
   @type t :: %__MODULE__{
@@ -11,7 +11,7 @@ defmodule ArcticBase.StreamRequest do
 
   def create(service_name, rpc, message, ref, stream_reader_pid) do
     # TODO: handle any error?
-    {:ok, body, _} = ArcticBase.Message.to_data(message, [])
+    {:ok, body, _} = Arctic.Base.Message.to_data(message, [])
 
     headers = [
       {"grpc-timeout", "10S"},

@@ -1,3 +1,3 @@
-defmodule ArcticBase.UnaryResponse do
+defmodule Arctic.Base.UnaryResponse do
   defstruct [:done, :headers, :data, :status]
 end

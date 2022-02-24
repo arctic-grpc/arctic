@@ -1,6 +1,6 @@
-defmodule ArcticBase.StubAdapterTest do
+defmodule Arctic.Base.StubAdapterTest do
   use ExUnit.Case
-  alias ArcticBase.StubAdapter, as: SUT
+  alias Arctic.Base.StubAdapter, as: SUT
 
   describe "new/1" do
     test "returns struct" do
@@ -20,7 +20,7 @@ defmodule ArcticBase.StubAdapterTest do
 end
 
 defmodule TestAdapter do
-  @behaviour ArcticBase.StubAdapter
+  @behaviour Arctic.Base.StubAdapter
   @impl true
   def connect(_) do
     :ok

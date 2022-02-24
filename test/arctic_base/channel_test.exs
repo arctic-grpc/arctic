@@ -1,6 +1,6 @@
-defmodule ArcticBase.ChannelTest do
+defmodule Arctic.Base.ChannelTest do
   use ExUnit.Case
-  alias ArcticBase.Channel, as: SUT
+  alias Arctic.Base.Channel, as: SUT
 
   describe "new/1" do
     test "returns struct" do

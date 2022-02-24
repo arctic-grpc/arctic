@@ -1,4 +1,4 @@
-defmodule ArcticBase.UnaryRequest do
+defmodule Arctic.Base.UnaryRequest do
   defstruct [:path, :headers, :body]
 
   @type t :: %__MODULE__{
@@ -9,7 +9,7 @@ defmodule ArcticBase.UnaryRequest do
 
   def create(service_name, rpc, message) do
     # TODO: handle any error?
-    {:ok, body, _} = ArcticBase.Message.to_data(message, [])
+    {:ok, body, _} = Arctic.Base.Message.to_data(message, [])
 
     headers = [
       {"grpc-timeout", "10S"},

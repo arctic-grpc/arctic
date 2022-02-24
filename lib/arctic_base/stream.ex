@@ -1,9 +1,9 @@
-defmodule ArcticBase.Stream do
+defmodule Arctic.Base.Stream do
   defstruct [:ref, :stream_reader_pid, :request_stream_pid]
 
   @type t :: %__MODULE__{ref: reference, stream_reader_pid: pid, request_stream_pid: nil | pid}
   @type response_msg(reply) ::
-          {:response, reference, {:ok, reply} | {:error, ArcticBase.RpcError.t()}}
+          {:response, reference, {:ok, reply} | {:error, Arctic.Base.RpcError.t()}}
   @type final_msg :: {:done, reference}
   def new(ref, stream_reader_pid, request_stream_pid \\ nil) do
     %__MODULE__{

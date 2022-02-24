@@ -1,4 +1,4 @@
-defmodule ArcticBase.Status do
+defmodule Arctic.Base.Status do
   @moduledoc """
   Collection of gRPC status.
   Please refer to https://github.com/grpc/grpc/blob/master/include/grpc/impl/codegen/status.h

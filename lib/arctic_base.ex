@@ -1,5 +1,5 @@
-defmodule ArcticBase do
+defmodule Arctic.Base do
   @moduledoc """
-  Documentation for `ArcticBase`.
+  Documentation for `Arctic.Base`.
   """
 end
