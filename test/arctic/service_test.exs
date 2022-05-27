@@ -1,6 +1,6 @@
-defmodule Arctic.Base.ServiceTest do
+defmodule Arctic.ServiceTest do
   use ExUnit.Case
-  alias Arctic.Base.Service, as: SUT
+  alias Arctic.Service, as: SUT
 
   describe "new/1" do
     test "returns struct" do
@@ -11,7 +11,7 @@ defmodule Arctic.Base.ServiceTest do
   describe "rpc macro" do
     test "adds rpc struct by calling rpc macro" do
       defmodule FirstTry do
-        use Arctic.Base.Service, name: "foo.Bar"
+        use Arctic.Service, name: "foo.Bar"
 
         rpc(
           :Get,
@@ -22,10 +22,10 @@ defmodule Arctic.Base.ServiceTest do
         )
       end
 
-      assert FirstTry.definition() == %Arctic.Base.Service{
+      assert FirstTry.definition() == %Arctic.Service{
                name: "foo.Bar",
                rpc_calls: [
-                 %Arctic.Base.Rpc{
+                 %Arctic.Rpc{
                    alias: :get,
                    description: "not sure",
                    name: :Get,
@@ -38,7 +38,7 @@ defmodule Arctic.Base.ServiceTest do
 
     test "compute alias automatically if name is in snake_case" do
       defmodule SecondTry do
-        use Arctic.Base.Service, name: "foo.Bar"
+        use Arctic.Service, name: "foo.Bar"
 
         rpc(
           :get,
@@ -51,7 +51,7 @@ defmodule Arctic.Base.ServiceTest do
 
     test "returns error when name is not snake_case and alias is missing" do
       defmodule SecondTry do
-        use Arctic.Base.Service, name: "foo.Bar"
+        use Arctic.Service, name: "foo.Bar"
 
         rpc(
           :get,

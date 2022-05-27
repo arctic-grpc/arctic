@@ -1,6 +1,6 @@
-defmodule Arctic.Base.RpcTest do
+defmodule Arctic.RpcTest do
   use ExUnit.Case
-  alias Arctic.Base.Rpc, as: SUT
+  alias Arctic.Rpc, as: SUT
 
   describe "new/1" do
     test "returns struct" do

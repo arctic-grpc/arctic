@@ -1,4 +1,4 @@
-defmodule Arctic.Base.Stub do
+defmodule Arctic.Stub do
   defmacro __using__(opts) do
     quote bind_quoted: [opts: opts] do
       service_mod = opts[:service]
@@ -11,16 +11,16 @@ defmodule Arctic.Base.Stub do
 
         case response_struct do
           {:stream, response_struct_c} ->
-            @spec unquote(func_name)(Arctic.Base.Channel.t(), unquote(request_struct).t(), list) ::
-                    {:ok, Arctic.Base.Stream.t()} | {:error, Arctic.Base.RpcError.t()}
-            # {:ok, unquote(response_struct_c).t()} | {:error, Arctic.Base.RpcError.t()}
+            @spec unquote(func_name)(Arctic.Channel.t(), unquote(request_struct).t(), list) ::
+                    {:ok, Arctic.Stream.t()} | {:error, Arctic.RpcError.t()}
+            # {:ok, unquote(response_struct_c).t()} | {:error, Arctic.RpcError.t()}
 
             @doc """
             The stream are sent as passive mode to the caller process
 
             Look for typespec for
-             * `Arctic.Base.Stream.response_msg(#{response_struct_c}.t())`
-             * `Arctic.Base.Stream.final_msg`
+             * `Arctic.Stream.response_msg(#{response_struct_c}.t())`
+             * `Arctic.Stream.final_msg`
             """
             def unquote(func_name)(channel, %unquote(request_struct){} = request, opts \\ []) do
               channel.stub_module.stream_request(
@@ -33,8 +33,8 @@ defmodule Arctic.Base.Stub do
             end
 
           response_struct_c ->
-            @spec unquote(func_name)(Arctic.Base.Channel.t(), unquote(request_struct).t(), list) ::
-                    {:ok, unquote(response_struct_c).t()} | {:error, Arctic.Base.RpcError.t()}
+            @spec unquote(func_name)(Arctic.Channel.t(), unquote(request_struct).t(), list) ::
+                    {:ok, unquote(response_struct_c).t()} | {:error, Arctic.RpcError.t()}
             def unquote(func_name)(channel, %unquote(request_struct){} = request, opts \\ []) do
               channel.stub_module.unary_request(
                 channel,

@@ -1,10 +1,10 @@
-defmodule Arctic.Base.MixProject do
+defmodule Arctic.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :arctic_base,
-      name: "Arctic.Base",
+      app: :arctic,
+      name: "Arctic",
       version: "0.1.0",
       elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,

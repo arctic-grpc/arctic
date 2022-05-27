@@ -1,4 +1,4 @@
-defmodule Arctic.Base.StubAdapter do
+defmodule Arctic.StubAdapter do
   defstruct [:conn_pid, :module]
 
   @type t :: %__MODULE__{
@@ -8,10 +8,10 @@ defmodule Arctic.Base.StubAdapter do
   @type service_name :: String.t()
   @type message :: struct
 
-  @callback connect(Arctic.Base.Channel.t()) :: :ok
+  @callback connect(Arctic.Channel.t()) :: :ok
   @callback request(
-              Arctic.Base.Channel.t(),
-              Arctic.Base.UnaryRequest.t() | Arctic.Base.StreamRequest.t()
+              Arctic.Channel.t(),
+              Arctic.UnaryRequest.t() | Arctic.StreamRequest.t()
             ) :: :ok
 
   @doc false
@@ -26,6 +26,6 @@ defmodule Arctic.Base.StubAdapter do
 
   @doc false
   def validate_input(other) do
-    raise ArgumentError, "expecting %Arctic.Base.StubAdapter{} but got #{inspect(other)}"
+    raise ArgumentError, "expecting %Arctic.StubAdapter{} but got #{inspect(other)}"
   end
 end

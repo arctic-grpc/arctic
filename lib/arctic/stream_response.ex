@@ -1,3 +1,3 @@
-defmodule Arctic.Base.StreamResponse do
+defmodule Arctic.StreamResponse do
   defstruct [:done, :headers, :status]
 end

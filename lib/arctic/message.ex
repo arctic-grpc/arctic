@@ -1,8 +1,8 @@
-defmodule Arctic.Base.Message do
+defmodule Arctic.Message do
   use Bitwise, only_operators: true
   @max_message_length 1 <<< (32 - 1)
 
-  alias Arctic.Base.RpcError
+  alias Arctic.RpcError
 
   @moduledoc false
 

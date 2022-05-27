@@ -1,4 +1,4 @@
-defmodule Arctic.Base.ChannelError do
+defmodule Arctic.ChannelError do
   defstruct [:reason, :message, :adapter_error]
 
   @type t :: %__MODULE__{

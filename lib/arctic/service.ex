@@ -1,4 +1,4 @@
-defmodule Arctic.Base.Service do
+defmodule Arctic.Service do
   @moduledoc """
   Define gRPC service
   """
@@ -6,15 +6,15 @@ defmodule Arctic.Base.Service do
 
   @type t :: %__MODULE__{
           name: String.t(),
-          rpc_calls: list(Arctic.Base.Rpc.t())
+          rpc_calls: list(Arctic.Rpc.t())
         }
 
   defmacro __using__(opts) do
     quote do
-      import Arctic.Base.Service, only: [rpc: 4, stream: 1]
+      import Arctic.Service, only: [rpc: 4, stream: 1]
 
       Module.register_attribute(__MODULE__, :rpc_calls, accumulate: true)
-      @before_compile Arctic.Base.Service
+      @before_compile Arctic.Service
 
       @name unquote(opts[:name])
     end
@@ -28,9 +28,9 @@ defmodule Arctic.Base.Service do
       @doc """
       Return definition of #{unquote(env.module)} service
       """
-      @spec definition :: Arctic.Base.Service.t()
+      @spec definition :: Arctic.Service.t()
       def definition do
-        %Arctic.Base.Service{
+        %Arctic.Service{
           name: unquote(name),
           rpc_calls: unquote(Macro.escape(rpc_calls))
         }
@@ -47,7 +47,7 @@ defmodule Arctic.Base.Service do
 
   defmacro rpc(name, request, response, options) do
     quote do
-      @rpc_calls %Arctic.Base.Rpc{
+      @rpc_calls %Arctic.Rpc{
         name: unquote(name),
         request: unquote(request),
         response: unquote(response),

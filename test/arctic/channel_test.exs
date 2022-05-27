@@ -1,10 +1,10 @@
-defmodule Arctic.Base.StubAdapterTest do
+defmodule Arctic.ChannelTest do
   use ExUnit.Case
-  alias Arctic.Base.StubAdapter, as: SUT
+  alias Arctic.Channel, as: SUT
 
   describe "new/1" do
     test "returns struct" do
-      assert %SUT{} = SUT.new(conn_pid: nil, module: TestAdapter)
+      assert {:ok, %SUT{}} = SUT.new(host: "host")
     end
   end
 
@@ -16,18 +16,5 @@ defmodule Arctic.Base.StubAdapterTest do
     test "raises error when input is invalid" do
       assert_raise ArgumentError, fn -> SUT.validate_input(nil) end
     end
-  end
-end
-
-defmodule TestAdapter do
-  @behaviour Arctic.Base.StubAdapter
-  @impl true
-  def connect(_) do
-    :ok
-  end
-
-  @impl true
-  def send_request(_, _, _, _) do
-    :ok
   end
 end

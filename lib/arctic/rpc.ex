@@ -1,4 +1,4 @@
-defmodule Arctic.Base.Rpc do
+defmodule Arctic.Rpc do
   defstruct [:name, :request, :response, :description, :alias]
 
   @type t :: %__MODULE__{

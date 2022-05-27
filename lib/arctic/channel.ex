@@ -1,20 +1,15 @@
-defmodule Arctic.Base.Channel do
+defmodule Arctic.Channel do
   defstruct [:schema, :host, :port, :adapter, :codec, :stub_module, :tls_options]
 
   @type t :: %__MODULE__{
           schema: :http | :https,
           host: String.t(),
           port: non_neg_integer,
-          adapter: Arctic.Base.StubAdapter.t(),
+          adapter: Arctic.StubAdapter.t(),
           stub_module: module,
           codec: module,
           tls_options: :ssl.tls_option()
         }
-
-  @doc false
-  def new(args) do
-    {:ok, struct(__MODULE__, args)}
-  end
 
   @doc false
   def validate_input(%__MODULE__{}) do
@@ -23,7 +18,7 @@ defmodule Arctic.Base.Channel do
 
   @doc false
   def validate_input(other) do
-    raise ArgumentError, "expecting %Arctic.Base.Channel{} but got #{inspect(other)}"
+    raise ArgumentError, "expecting %Arctic.Channel{} but got #{inspect(other)}"
   end
 
   @doc false
